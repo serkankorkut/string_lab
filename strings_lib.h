@@ -147,8 +147,6 @@ char **parseString(char *expression, char *delimeters,int *howManyPieces)
 
 
     /* If you split a thing with n line, you got n + 1 pieces. That's why we add 1 to discreteDelimCount */
-
-
     char **retString = (char **) calloc((*howManyPieces  ), sizeof(char *));
 
 
@@ -159,7 +157,7 @@ char **parseString(char *expression, char *delimeters,int *howManyPieces)
     }
 
 
-    /* */
+    /* Actually fill */
     for (i = 0; i < *howManyPieces; i++)
     {
         int accessIndex = 0;
