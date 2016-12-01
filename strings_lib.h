@@ -30,15 +30,15 @@ int getLength(char *expression)
 }
 
 /* Returns true if aChar is one of the delimeters  */
-enum bool isContains(char aChar, char *delims)
+enum bool isContains(char *string,char aChar)
 {
     enum bool ret = false;
 
     int i;
 
-    for (i = 0; delims[i] != '\0'; i++)
+    for (i = 0; string[i] != '\0'; i++)
     {
-        if (aChar == delims[i])
+        if (aChar == string[i])
         {
             ret = true;
 
@@ -82,7 +82,7 @@ char **parseString(char *expression, char *delimeters,int *howManyPieces)
     /* Count the delims */
     for (i = 0; i < getLength(expression); i++)
     {
-        if ((isContains(expression[i], delimeters) == true && isContains(expression[i + 1], delimeters) == false))
+        if ((isContains(delimeters,expression[i]) == true && isContains(delimeters,expression[i + 1]) == false))
         {
 
 
@@ -100,6 +100,9 @@ char **parseString(char *expression, char *delimeters,int *howManyPieces)
     /*Count expression has how many delimeters and how long each sub expression is */
     int backSum = 0;
 
+    *howManyPieces = discreteDelimCount + 1;
+
+
     /* We should again set 0 to discreteDelimCount, to control the discreteDelimCount as an accessing index for sub expression lengths and starting points  */
     discreteDelimCount = 0;
 
@@ -107,7 +110,7 @@ char **parseString(char *expression, char *delimeters,int *howManyPieces)
     {
         /* To check it's a delimeter while the next element is not a delimeter,
          * if we don't check it, it will count adjacent delimeters more than 1   */
-        if ((isContains(expression[i], delimeters) == true && isContains(expression[i + 1], delimeters) == false))
+        if ((isContains(delimeters,expression[i ]) == true && isContains(delimeters,expression[i + 1]) == false))
         {
 
             if (discreteDelimCount == 0)
@@ -145,7 +148,6 @@ char **parseString(char *expression, char *delimeters,int *howManyPieces)
 
     /* If you split a thing with n line, you got n + 1 pieces. That's why we add 1 to discreteDelimCount */
 
-   *howManyPieces = discreteDelimCount + 1;
 
     char **retString = (char **) calloc((*howManyPieces  ), sizeof(char *));
 
@@ -162,7 +164,7 @@ char **parseString(char *expression, char *delimeters,int *howManyPieces)
     {
         int accessIndex = 0;
 
-        while (isContains(expression[subExpStartingPoints[i] + accessIndex], delimeters) == false)
+        while (isContains(delimeters , expression[subExpStartingPoints[i] + accessIndex]) == false)
         {
             retString[i][accessIndex] = expression[accessIndex+ subExpStartingPoints[i]];
             accessIndex++;
