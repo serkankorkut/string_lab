@@ -145,7 +145,7 @@ int main()
 {
     char* str = "Hallo";
 
-    /* Allocate enough space for dest, don't forget to add 1 for null terminator */
+    /* Allocate enough space for n, don't forget to add 1 for null terminator */
     char* dest = (char*)calloc( 3 + 1, sizeof(char));
 
     copyString(dest,str,3);
