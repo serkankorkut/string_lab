@@ -81,7 +81,7 @@ Hallo contains a
 
 
 <br>
-<h3>3)Copies a string to another. Note that destination string should have dynamically been allocated enough to store source </h3>
+<h3>3)Copies a string to another. Note that destination string should have been dynamically allocated enough to store source </h3>
 
 <br>
 
@@ -123,7 +123,7 @@ String dest is Hallo
 
 
 <br>
-<h3>4)Copies n characters from a string to another. Note that destination string should have dynamically been allocated enough to store n + 1 characters </h3>
+<h3>4)Copies n characters from a string to another. Note that destination string should have been dynamically allocated enough to store n + 1 characters </h3>
 
 <br>
 
