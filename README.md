@@ -216,3 +216,121 @@ Output
 3. piece is smks
 ```
 
+<h3>6)Append strings. Takes dest char pointer's address, a src char pointer for adding the tail of dest pointer. dest char pointer could be either have allocated or have not  </h3>
+
+<br>
+
+
+
+Prototype
+
+ ``` c
+void stringAppend(char **dest, char *src)
+```
+
+Usage
+  
+  ``` c
+#include <stdio.h>
+#include "strings_lib.h"
+
+int main()
+{
+    char *dest1 = (char*)calloc(100, sizeof(char));
+
+
+    stringAppend(&dest1, "Some are ");
+    stringAppend(&dest1, "satin, ");
+    stringAppend(&dest1, "some are ");
+    stringAppend(&dest1, "steel, " );
+    stringAppend(&dest1, "some are silk and " );
+    stringAppend(&dest1, "some are ");
+    stringAppend(&dest1, "leather");
+
+    printf("%s\n",dest1);
+
+    char *dest2 = NULL;
+
+    stringAppend(&dest2,"Billie Jean ");
+    stringAppend(&dest2,"is not ");
+    stringAppend(&dest2,"my ");
+    stringAppend(&dest2,"lover");
+
+    printf("%s\n",dest2);
+
+
+    return 0;
+
+
+}
+
+
+```
+
+Output
+```sh
+Some are satin, some are steel, some are silk and some are leather
+Billie Jean is not my lover
+```
+
+<h3>7)Append strings faster. It's faster because it don't traverse from dest char pointers first element every time when function calls. It stores where dest char pointer ends in the startIndex. So you should assign startIndex to returning value of getLength(*dest) and then use startIndex's address as third parameter. Takes dest char pointer's address, a src char pointer for adding the tail of dest pointer and an integer's address (that you should have assigned getLength(*dest) for the first time you call the function). dest char pointer could be either have allocated or have not  </h3>
+
+<br>
+
+
+
+Prototype
+
+ ``` c
+void stringAppend(char **dest, char *src,int *startIndex)
+```
+
+Usage
+  
+  ``` c
+#include <stdio.h>
+#include "strings_lib.h"
+
+int main()
+{
+   char* dest3 =NULL;
+
+    i = getLength(dest3);
+
+    stringAppendFaster(&dest3,"Fast company... ",&i);
+    stringAppendFaster(&dest3,"fast company... ",&i);
+    stringAppendFaster(&dest3,"going nowhere... ",&i);
+    stringAppendFaster(&dest3,"going ",&i);
+    stringAppendFaster(&dest3,"nowhere ",&i);
+    stringAppendFaster(&dest3,"faast",&i);
+
+
+    printf("%s\n",dest3);
+
+    char* dest4 = (char*)calloc(100, sizeof(char));
+
+    i = getLength(dest4);
+
+    stringAppendFaster(&dest4,"The truth ",&i);
+    stringAppendFaster(&dest4,"is just a ",&i);
+    stringAppendFaster(&dest4,"rule ",&i);
+    stringAppendFaster(&dest4,"you can ",&i);
+    stringAppendFaster(&dest4,"bend",&i);
+
+    printf("%s\n",dest4);
+
+
+    return 0;
+
+
+}
+
+
+```
+
+Output
+```sh
+Fast company... fast company... going nowhere... going nowhere faast
+The truth is just a rule you can bend
+```
+
