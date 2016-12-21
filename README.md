@@ -282,7 +282,7 @@ Billie Jean is not my lover
 Prototype
 
  ``` c
-void stringAppend(char **dest, char *src,int *startIndex)
+void stringAppendFaster(char **dest, char *src,int *startIndex)
 ```
 
 Usage
