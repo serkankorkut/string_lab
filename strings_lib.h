@@ -13,21 +13,7 @@ enum bool
 #ifndef STRINGS_LIB_H
 #define STRINGS_LIB_H
 
-/* Returns length of a string. Does not count null terminator */
-int getLength(char *expression)
-{
-    int length = 0;
 
-    while (expression[length] != '\0')
-    {
-        length++;
-    }
-
-
-    return length;
-
-
-}
 
 /* Returns true if aChar is one of the delimeters  */
 enum bool isContains(char *string,char aChar)
@@ -47,6 +33,63 @@ enum bool isContains(char *string,char aChar)
     }
 
     return ret;
+
+
+}
+
+int stringCompare(char * str1, char * str2)
+{
+
+    int result = 0;
+
+
+    if( *str1 == '\0' && *str2 == '\0'  )
+    {
+        return 0;
+    }
+
+    if(*str1 == '\0')
+    {
+        return -1;
+    }
+
+    if(*str2 == '\0')
+    {
+        return 1;
+    }
+
+
+
+    while(*str1 != '\0'  && *str2 != '\0'  )
+    {
+
+       result = result + *str1 - *str2;
+
+        str1++;
+        str2++;
+
+    }
+
+    return result;
+}
+
+/* Returns length of a string. Does not count null terminator */
+int getLength(char *expression)
+{
+    if(expression==NULL || stringCompare(expression,"") == 0 )
+    {
+        return 0;
+    }
+
+    int length = 0;
+
+    while (expression[length] != '\0')
+    {
+        length++;
+    }
+
+
+    return length;
 
 
 }
@@ -147,6 +190,8 @@ char **parseString(char *expression, char *delimeters,int *howManyPieces)
 
 
     /* If you split a thing with n line, you got n + 1 pieces. That's why we add 1 to discreteDelimCount */
+
+
     char **retString = (char **) calloc((*howManyPieces  ), sizeof(char *));
 
 
@@ -157,7 +202,7 @@ char **parseString(char *expression, char *delimeters,int *howManyPieces)
     }
 
 
-    /* Actually fill */
+    /* */
     for (i = 0; i < *howManyPieces; i++)
     {
         int accessIndex = 0;
@@ -180,6 +225,93 @@ char **parseString(char *expression, char *delimeters,int *howManyPieces)
 
 
     return retString;
+
+}
+
+/* Append strings. **dest is the adress of the string you want to extend.
+  *src is the char pointer of the string you want to add the tail of *dest */
+void stringAppend(char** dest, char* src)
+{
+
+    int startIndex;
+    /* Set starting index */
+    startIndex = getLength(*dest);
+
+    /* Set allocation for dest, extend as for itself, for src and plus one for null terminator  */
+    *dest = (char*)realloc(*dest, (getLength(*dest)+getLength(src) +1 ) * sizeof(char) );
+
+
+
+    /* Take a pointer to dest   */
+    char* pointerToDest = *dest;
+
+
+    /* While src have new characters */
+    while(*src)
+    {
+        /* Set the char from starting index(end of *dest) */
+        pointerToDest[startIndex] = *src;
+
+        /* Increase src's pointer and start index */
+        src++;
+
+        (startIndex)++;
+
+    }
+
+    /* Set the null terminator */
+    pointerToDest[startIndex] = '\0';
+
+
+
+
+
+
+
+
+
+}
+
+/* Append strings. It's faster than stringAppend because you don't traverse the *dest every time.
+   We just store the ending index of it. startIndex should be the adress of the variable that you
+   have assigned getLength(*dest). You assign it just for the first time for the same *dest  */
+void stringAppendFaster(char** dest, char* src,int* startIndex)
+{
+
+
+
+    /* Set allocation for dest, extend as for itself, for src and plus one for null terminator  */
+    *dest = (char*)realloc(*dest, (getLength(*dest)+getLength(src) +1 ) * sizeof(char) );
+
+
+
+    /* Take a pointer to dest   */
+    char* pointerToDest = *dest;
+
+
+    /* While src have new characters */
+    while(*src)
+    {
+        /* Set the char from starting index(end of *dest) */
+        pointerToDest[*startIndex] = *src;
+
+        /* Increase src's pointer and start index */
+        src++;
+
+        (*startIndex)++;
+
+    }
+
+    /* Set the null terminator */
+    pointerToDest[*startIndex] = '\0';
+
+
+
+
+
+
+
+
 
 }
 
