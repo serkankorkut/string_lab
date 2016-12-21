@@ -4,7 +4,7 @@ A compact C library that contains following functions dependent with stdlib.h . 
 
 <br>
 
-<h3>1)Compares two strings as strcmp style(returns negative number for str1 is smaller than str2 alphabetically, positive for reverse case, and 0 for 2 strings are equal)  </h3>
+<h3>1)Compares two strings as strcmp style(returns negative number for str1 is smaller than str2 alphabetically, positive for reverse case, and 0 for str1 and str2 are are equal)  </h3>
 
 <br>
 
