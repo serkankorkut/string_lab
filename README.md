@@ -2,10 +2,50 @@
 
 A compact C library that contains following functions dependent with stdlib.h . You can find the explonation and example of the functions in the library
 
+<br>
+
+<h3>2)Compares two strings as strcmp style(returns negative number for str1 is smaller than str2 alphabetically, positive for reverse case, and 0 for 2 strings are equal)  </h3>
+
+<br>
+
+
+
+Prototype
+
+ ``` c
+int stringCompare(char * str1, char * str2)
+```
+
+Usage
+  
+  ``` c
+#include <stdio.h>
+#include "strings_lib.h"
+
+int main()
+{
+    char* str1 = "Hallo";
+    char* str2 = "Hello";
+
+    int a = stringCompare(str1,str2);
+    
+    printf("%d\n",a);
+
+    return 0;
+}
+   
+```
+
+Output
+```sh
+-4
+```
+
 
 
 <br>
-<h3>1)Get the length of the string</h3>
+
+<h3>2)Get the length of the string</h3>
 
 <br>
 
@@ -42,7 +82,7 @@ Length of str is 5
 
 
 <br>
-<h3>2)Return enum bool type true or false if a string contains a char </h3>
+<h3>3)Return enum bool type true or false if a string contains a char </h3>
 
 <br>
 
@@ -81,7 +121,7 @@ Hallo contains a
 
 
 <br>
-<h3>3)Copies a string to another. Note that destination string should have been dynamically allocated enough to store source </h3>
+<h3>4)Copies a string to another. Note that destination string should have been dynamically allocated enough to store source </h3>
 
 <br>
 
@@ -123,7 +163,7 @@ String dest is Hallo
 
 
 <br>
-<h3>4)Copies n characters from a string to another. Note that destination string should have been dynamically allocated enough to store n + 1 characters </h3>
+<h3>5)Copies n characters from a string to another. Note that destination string should have been dynamically allocated enough to store n + 1 characters </h3>
 
 <br>
 
@@ -164,7 +204,7 @@ String dest is Hal
 <br>
 
 <br>
-<h3>5)Parses string expression to subexpressions with a random int's address and it'll return parsed subexpressions with respect to delimeters, that each row is a subexpression and the number of pieces stored in parameter integer</h3>
+<h3>6)Parses string expression to subexpressions with a random int's address and it'll return parsed subexpressions with respect to delimeters, that each row is a subexpression and the number of pieces stored in parameter integer</h3>
 
 <br>
 
@@ -216,7 +256,7 @@ Output
 3. piece is smks
 ```
 
-<h3>6)Append strings. Takes dest char pointer's address, a src char pointer for adding the tail of dest pointer. dest char pointer could be either have allocated or have not  </h3>
+<h3>7)Append strings. Takes dest char pointer's address, a src char pointer for adding the tail of dest pointer. dest char pointer could be either have allocated or have not  </h3>
 
 <br>
 
@@ -273,7 +313,7 @@ Some are satin, some are steel, some are silk and some are leather
 Billie Jean is not my lover
 ```
 
-<h3>7)Append strings faster. It's faster because it don't traverse from dest char pointers first element every time when function calls. It stores where dest char pointer ends in the startIndex. So you should assign startIndex to returning value of getLength(*dest) and then use startIndex's address as third parameter. Takes dest char pointer's address, a src char pointer for adding the tail of dest pointer and an integer's address (that you should have assigned getLength(*dest) for the first time you call the function). dest char pointer could be either have allocated or have not  </h3>
+<h3>8)Append strings faster. It's faster because it don't traverse from dest char pointers first element every time when function calls. It stores where dest char pointer ends in the startIndex. So you should assign startIndex to returning value of getLength(*dest) and then use startIndex's address as third parameter. Takes dest char pointer's address, a src char pointer for adding the tail of dest pointer and an integer's address (that you should have assigned getLength(*dest) for the first time you call the function). dest char pointer could be either have allocated or have not  </h3>
 
 <br>
 
