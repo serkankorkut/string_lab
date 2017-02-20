@@ -40,7 +40,7 @@ enum bool isContains(char *string,char aChar)
 int stringCompare(char * str1, char * str2)
 {
 
-    int result = 0;
+      int result = 0;
 
 
     if( *str1 == '\0' && *str2 == '\0'  )
@@ -69,26 +69,39 @@ int stringCompare(char * str1, char * str2)
         str2++;
 
     }
-
-    return result;
-}
-
-/* Returns length of a string. Does not count null terminator */
-int getLength(char *expression)
-{
-    if(expression==NULL || stringCompare(expression,"") == 0 )
+    
+    if(*str1 == '\0')
     {
-        return 0;
+        if(result == 0)
+        {
+            return -1;
+        }
+        else
+        {
+            while(*str2 != '\0')
+            {
+                result = result - *str2;
+                str2++;
+            }
+        }
     }
-
-    int length = 0;
-
-    while (expression[length] != '\0')
+    
+    if(*str1 == '\0')
     {
-        length++;
+        if(result == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            while(*str1 != '\0')
+            {
+                result = result + *str1;
+                str1++;
+            }
+        }
+        
     }
-
-
     return length;
 
 
