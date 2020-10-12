@@ -1,4 +1,4 @@
-#strings_lib.h
+# strings_lib.h
 
 A compact C library that contains following functions dependent with stdlib.h . You can find the explonation and example of the functions in the library
 
